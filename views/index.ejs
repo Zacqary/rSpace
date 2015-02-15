@@ -1,0 +1,53 @@
+<% layout('layout') -%>
+<header id = "navbar">
+	<div class="wrapper">
+		<h1><%= title %></h1>
+	</div>
+</header>
+<main class = "wrapper body">
+	<% var columnNames = ["Party","Shout","Chat"]; 
+	for (var i = 0; i < 3; i++) { %>
+		<div class = "col">
+			<header class="col-header">
+				<h2>#<%= columnNames[i] %></h2>
+			</header>
+			<article class="new-post-box">
+				<ul class="new-post-options">
+					<li class='active'>Write Post</li>
+					<li>Share Image</li>
+				</ul>
+				<div class="new-post-form ">
+					<div class='editable' contenteditable='true' id="post-form-<%= i %>"><br></div>
+				</div>
+			</article>
+			<% for(var j = 0; j < 10; j++) { %>
+				<article>
+					<section class="post-body">
+						<header>
+							<img src="img/avatar48.png" class='avatar48 avatar'><span class='at-mention'>@</span><a href=""><strong>Name</strong></a>
+						</header>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat malesuada nulla a pulvinar. Curabitur iaculis nisl eget faucibus suscipit. Sed vitae consequat nunc. Sed viverra enim vel ullamcorper mollis. Quisque tempus eros ac fermentum lacinia. Aenean faucibus, est vel dapibus fringilla, libero purus venenatis orci, ac tempor urna ex a odio. Nam eu fermentum diam, elementum commodo leo. Sed sed laoreet magna. Vivamus vitae sollicitudin dui. Integer viverra urna a arcu tincidunt, in tincidunt leo scelerisque.</p>
+					</section>
+					<section class="comments">
+						<section class="hearts">
+							<span class='at-mention'>@</span><a href="">Name</a> &lt;3's this
+						</section>
+						<div class='comment'>
+							<img src="img/avatar48.png" class='avatar48 avatar'>
+							<p><span class='at-mention'>@</span><a href=""><strong>Name</strong></a> Quisque sit amet nisl sed <a href="">lectus vehicula</a> suscipit. Aliquam sodales et lectus in pellentesque.</p>
+						</div>
+						<div class='comment'>
+							<img src="img/avatar48.png" class='avatar48 avatar'>
+							<p><span class='at-mention'>@</span><a href=""><strong>Name</strong></a> Maecenas convallis et dui non tincidunt. Aliquam sed tincidunt urna.</p>
+						</div>
+					</section>
+				</article>
+			<% } %>
+		</div>
+	<% } %>
+</main>
+<footer id ="main-footer">
+	<div class="wrapper">	
+		Powered by rSpace
+	</div>
+</footer>

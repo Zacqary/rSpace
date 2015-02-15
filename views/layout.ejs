@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <title><%= title %></title>
+	    <meta name="description" content="">
+		<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+		<meta name="viewport" content="width=device-width" />
+		<link href="css/style.css" rel="stylesheet">
+		<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="js/mwheelintent.js"></script>
+		<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+		<script src="js/medium.js"></script>
+		<link rel="stylesheet" href="css/medium.css">
+		<script type="text/javascript">
+			$(function(){
+				$('.col').jScrollPane({autoReinitialise: true}).hover(function () {
+					$(this).find('.jspDrag').stop().fadeTo('fast', 1);
+				},function() {
+					var thisCol = $(this);
+					var me = $(this).find('.jspDrag');
+					if (!me.hasClass('jspActive'))
+						me.stop().fadeTo(400, 0);
+					else $(document).bind("mouseup", function(){
+						$(document).unbind("mouseup");
+						if (!thisCol.is(":hover"))
+							me.stop().fadeTo('fast', 0);
+					})
+				});
+				
+				$("body").mousewheel(function(e,d){
+					var hovering = false;
+					$('.col').each(function(){
+						if ($(this).is(":hover") ) hovering = true;
+					})
+					if (!hovering){
+						$('.col').each(function(){
+							var api = $(this).data('jsp');
+							api.scrollByY(-d);
+						})
+					}
+					
+				})
+				$('body').mousedown(function(e){if(e.button==1)return false});
+				// $('.editable').each(function(){
+// 					new Medium({
+// 						element: $(this)[0],
+// 						placeholder: "Write new post",
+// 						autoHR: false,
+// 						tags:{
+// 							'break': 'br',
+// 							'innerLevel': ['em', 'u', 'strong']
+// 						}
+// 					});
+// 				})
+				
+				$('div[contenteditable]').keydown(function(e) {
+				    if(e.keyCode === 117){
+						document.execCommand('bold',false);
+				    	return false;
+				    }
+				  });
+				
+				function resizeCols(){
+					var colheight = ($(window).height() - $("#main-footer").height() - $("#navbar").height()) * 100 / $(window).height();
+					$(".col").css("height",colheight+"vh");
+				}
+				resizeCols();
+				$(window).resize(resizeCols);
+				
+
+			});
+		</script>
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<%- body %>
+	</body>
+</html>

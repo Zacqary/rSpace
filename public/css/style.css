@@ -43,15 +43,16 @@ img.avatar{
 
 p{
 	line-height:1.25em;
-	margin:8px 0 16px 0;
+	margin:0 0 16px 0;
 }
 
-#navbar, #main-footer{
+#navbar{
 	background:#007A74;
 	width:100%;
 	z-index:9000;
 	color:#fff;
 	overflow:hidden;
+	padding:0px 16px;
 }
 
 #navbar{
@@ -86,14 +87,49 @@ p{
 	height:100vh;
 }
 
+/* SIDEBAR */
+
+.sidebar{
+	height:100vh;
+	background:#555;
+	float:left;
+	box-shadow:3px 3px 3px rgba(0,0,0,0.6);
+	border-right:1px solid #333;
+	z-index: 5;
+	color:#fff;
+	padding:6px;
+}
+
 /* COLUMNS */
 
-.col{
+.columns{
+	overflow-x:auto;
+	overflow-y:hidden;
+	white-space: nowrap;
 	height:96vh;
-	float:left;
+	padding-left:16px;
+}
+
+.columns .jspVerticalBar{
+	display: none;
+}
+
+.col{
+	white-space: normal;
+	height:96vh;
+	display: inline-block;
 	background:#333;
 	color:#fff;
-	padding-top:3px;
+	padding-top:10px;
+	min-width:360px;
+	max-width:690px;
+	width:48%;
+	font-size:12pt;
+
+}
+
+.col .jspVerticalBar{
+	display: inline;
 }
 
 .col-header{
@@ -173,17 +209,18 @@ p{
 .post-body header{
 	height:48px;
 	padding:0;
+	margin-bottom:8px;
 }
 
 .comments{
-	padding: 1px 14px 10px 14px;
+	padding: 7px 14px;
 	background:#666;
 	font-size:90%;
 	border-radius: 0 0 5px 5px;
 	border-top:2px solid #565656;
 }
 .comment{
-	padding:0 0 4px 0;
+	padding:8px 0px;
 }
 .hearts{
 	border-bottom:1px solid #aaa;
@@ -192,46 +229,42 @@ p{
 
 /* AVATARS */
 
+.av-text-block{
+	position: relative;
+	min-height: 52px;
+}
+.av-text-block div{
+	display:inline-block;
+	left:54px;
+	position:absolute;
+}
+
+.avatar{
+	display:inline-block;
+	position: absolute;
+}
+
 .avatar48{
-	float:left;
-	margin-right:6px;
 }
 
 /* MEDIA */
 
-@media (min-width:1400px){
-	.wrapper{
-		width:1380px;
-	}
-	.col{
-		width:460px;
-		font-size:12pt;
-	}
-}
-@media (min-width:1280px) and (max-width:1399px){
-	.wrapper{
-		width:1260px;
-	}
-	.col{
-		width:420px;
-		font-size:11pt;
+@media (min-width:1280px){
+	.sidebar{
+		width:238px;
 	}
 }
 @media (min-width:1024px) and (max-width:1279px){
-	.wrapper{
-		width:1005px;
-	}
-	.col{
-		width:335px;
-		font-size:10pt;
+	.sidebar{
+		width:188px;
 	}
 }
 @media (min-width:768px) and (max-width:1023px){
-	.wrapper{
-		width:750px;
+	.sidebar{
+		width:148px;
 	}
 	.col{
-		width:250px;
-		font-size:9pt;
+		font-size:10pt;
+		min-width:280px;
 	}
 }

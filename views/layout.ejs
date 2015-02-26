@@ -29,20 +29,8 @@
 							me.stop().fadeTo('fast', 0);
 					})
 				});
-				
-				$("body").mousewheel(function(e,d){
-					var hovering = false;
-					$('.col').each(function(){
-						if ($(this).is(":hover") ) hovering = true;
-					})
-					if (!hovering){
-						$('.col').each(function(){
-							var api = $(this).data('jsp');
-							api.scrollByY(-d);
-						})
-					}
-					
-				})
+				$('.columns').jScrollPane({autoReinitialise: true});
+
 				$('body').mousedown(function(e){if(e.button==1)return false});
 				// $('.editable').each(function(){
 // 					new Medium({
@@ -64,13 +52,12 @@
 				  });
 				
 				function resizeCols(){
-					var colheight = ($(window).height() - $("#main-footer").height() - $("#navbar").height()) * 100 / $(window).height();
-					$(".col").css("height",colheight+"vh");
+					setTimeout(function(){
+						$(".col").find('.jspDrag').stop().fadeTo('fast', 0);
+					}, 1000);
 				}
 				resizeCols();
-				$(window).resize(resizeCols);
-				
-
+				$(window).resize(resizeCols)
 			});
 		</script>
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
